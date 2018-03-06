@@ -1,13 +1,13 @@
 BEGIN;
 
-INSERT INTO users (user_name) VALUES ('Grumpy');
-INSERT INTO users (user_name) VALUES ('Happy');
-INSERT INTO users (user_name) VALUES ('Sleepy');
-INSERT INTO users (user_name) VALUES ('Sneezy');
+INSERT INTO users (username) VALUES ('Grumpy');
+INSERT INTO users (username) VALUES ('Happy');
+INSERT INTO users (username) VALUES ('Sleepy');
+INSERT INTO users (username) VALUES ('Sneezy');
 
-INSERT INTO tasks (task_title) VALUES ('Come home from work singing');
-INSERT INTO tasks (task_title) VALUES ('Wake up Snow White');
-INSERT INTO tasks (task_title) VALUES ('Throw apples out in the trash!');
+INSERT INTO tasks (title) VALUES ('Come home from work singing');
+INSERT INTO tasks (title) VALUES ('Wake up Snow White');
+INSERT INTO tasks (title) VALUES ('Throw apples out in the trash!');
 
 INSERT INTO tasks_assignments VALUES (1, 1);
 INSERT INTO tasks_assignments VALUES (1, 2);

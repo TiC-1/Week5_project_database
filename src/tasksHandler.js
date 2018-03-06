@@ -21,8 +21,8 @@ function create(request, response) {
   });
   request.on("end", function() {
     var parsedFormData = querystring.parse(formData);
-    db.query("INSERT INTO tasks (task_title) VALUES ($1)",
-    [parsedFormData.task_title],
+    db.query("INSERT INTO tasks (title) VALUES ($1)",
+    [parsedFormData.title],
     function(err, result) {
       response.writeHead(302, {"Location": "/"});
       response.end();;
