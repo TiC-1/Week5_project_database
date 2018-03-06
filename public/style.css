@@ -1,0 +1,107 @@
+/*<div class="input_form">
+     <h1 class="input_heading" tabindex="0">MUSICMETHEOROPATHETIC?!</h1>
+     <form class="myForm" id="add-todo">
+       <input class="myForm-input myForm-input-text" aria-label="input textbox" placeholder="Search a new song" type="text" name="description" value="" required aria-required="true">
+       <input class="myForm-input myForm-input-button" type="submit" role="button" aria-label="Search song" value="" tabindex="0">
+     </form>*/
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+}
+body {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 100;
+}
+
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+.li_dom {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}
+.a_dom{
+  padding-bottom:30px;
+}
+
+.instruction{
+  font-weight: normal;
+  text-align: center;
+  color: black;
+  padding: 50px 40px;
+  /* background: #333333; */
+}
+
+.track{
+  font-weight: normal;
+  text-align: center;
+  color: red;
+  padding: 50px 40px;
+}
+
+.input_form {
+  width: 100%;
+  box-shadow: 0px 1px 1px 0px rgba(100,100,100,0.75);
+
+}
+
+.input_heading {
+  font-weight: normal;
+  text-align: center;
+  color: white;
+  padding: 50px 40px;
+  background: #333333;
+}
+
+.myForm {
+  border-bottom: 1px solid rgba(100,100,100,0.15);
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.myForm-input {
+  padding-left: 40px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.myForm-input-text {
+  width: 90%;
+}
+
+.myForm-input-button {
+  padding: 20px;
+  margin-right: 20px;
+  background-size: 25px;
+  background: url('images/search.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.myForm-input-button:hover {
+  opacity: 0.8;
+  background-size: 28px;
+}
+
+.myForm-input::-webkit-input-placeholder {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 100;
+  font-size: 1rem;
+  color: #bababa;
+
+}
