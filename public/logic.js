@@ -1,3 +1,17 @@
+// Main function to get infos from server
+function getUsers(cb, string) {
+  request(function(err, obj) {
+    cb(obj);
+  }, url);
+}
+
+function getTasks(cb, string) {
+  request(function(err, obj) {
+    cb(obj);
+  }, url);
+}
+
+
 // Generic funtion to send a request and parse the returned string into an object
 function request(cb, url) {
   var xhr = new XMLHttpRequest();

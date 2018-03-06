@@ -1,3 +1,30 @@
+var form = document.getElementById("add-todo");
+
+getUsersList();
+
+function getUsersList() {
+  var str = "/users";
+  getUsers(updateUsers, str);
+}
+
+function updateUsers(state) {
+  if (form) renderUsers(state);
+}
+
+function renderUsers(state) {
+  form.appendChild(newChild)
+  // Create a new <ul></ul> with 'acList' class
+  var wordUL_node = document.createElement('ul');
+  wordUL_node.setAttribute('class', 'acList');
+  // Insert <li> calling createLI function
+  state.forEach(function(item) {
+    wordUL_node.appendChild(createLI(item));
+  });
+  // Replace previous 'container' content (<ul>...</ul>)
+  container.replaceChild(wordUL_node, container.firstChild);
+};
+
+
 // part 2 linking it all together
 // The function here is called an iife,
 // it keeps everything inside hidden from the rest of our application
