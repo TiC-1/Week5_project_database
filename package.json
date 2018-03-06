@@ -1,0 +1,31 @@
+{
+  "name": "week5_project_database",
+  "version": "1.0.0",
+  "description": "Subject: database + node.js + dynamic front-end Author: TiC-1 team",
+  "main": "server.js",
+  "homepage": "https://github.com/TiC-1/Week5_project_database#readme",
+  "scripts": {
+    "test": "NODE_ENV=test tape test/*.test.js | tap-spec",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiC-1/Week5_project_database.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TiC-1/Week5_project_database/issues"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.1",
+    "supertest": "^3.0.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.9.0"
+  },
+  "dependencies": {
+    "env2": "^2.2.0",
+    "pg": "^7.4.1"
+  }
+}
