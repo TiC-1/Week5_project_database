@@ -41,8 +41,8 @@ test("Returns users in array and check property username", function(assert) {
 //     });
 // });
 
-test("End pool connection", function(assert) {
-  db.end(function() {
-    assert.end();
-  });
-});
+// test("End pool connection", function(assert) {
+//   db.end(function() {
+//     assert.end();
+//   });
+// });
