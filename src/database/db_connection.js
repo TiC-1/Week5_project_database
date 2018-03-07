@@ -17,8 +17,6 @@ var options = {
   max: process.env.DB_MAX_CONNECTIONS || 2,
   user: userPass[0],
   password: userPass[1],
-  idleTimeoutMillis: 1,
-  connectionTimeoutMillis: 1,
 }
 
 var pool = new Pool(options);
