@@ -1,20 +1,16 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS tasks_assignments, tasks, users;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS tasks;
-
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255)
 );
-
-DROP TABLE IF EXISTS tasks_assignments;
 
 CREATE TABLE tasks_assignments (
   task_id INT,
