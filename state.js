@@ -1,31 +1,18 @@
 var state = [
-
   {
     id: -3,
     title: 'first todo',
-    assign: [
-      {id: 1, name: 'Al'},
-      {id: 2, name: 'Claudio'},
-      {id: 3, name: 'Matte'},
-      {id: 4, name: 'Iannis'}
-      ]
+    assign: [1, 2, 3, 4]
   },
-
   {
     id: -2,
     title: 'second todo',
-    assign: [
-      {id: 2, name: 'Claudio'},
-      {id: 4, name: 'Iannis'}
-      ]
+    assign: [2, 4]
   },
-
   {
     id: -1,
     title: 'third todo',
-    assign: [
-      {id: 3, name: 'Matte'}
-      ]
+    assign: [3]
   }
 ]
 
