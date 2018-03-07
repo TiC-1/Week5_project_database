@@ -105,3 +105,52 @@ body {
   color: #bababa;
 
 }
+
+
+.todo-listitem:first-child {
+  list-style-type: none;
+  padding-top: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.todo-listitem {
+  list-style-type: none;
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.todo-listitem-text {
+  margin-right: auto;
+  width: 50%;
+  padding: 10px 10px;
+  border: none;
+  font-size: 13px;
+}
+
+label{
+  display: inline-block;
+}
+
+
+/*.checkbox{
+  margin-right: 18px;
+  margin-left: 30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: 1px solid #e74c3c;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.checkbox.checked {
+  background: #e74c3c;
+}*/
+
+/*
