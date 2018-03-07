@@ -30,4 +30,4 @@ function index(request, response) {
 //   });
 // }
 
-module.exports = {index: index, /*create: create*/};
+module.exports = {index: index/*, create: create*/};

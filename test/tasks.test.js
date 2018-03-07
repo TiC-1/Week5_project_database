@@ -28,12 +28,12 @@ test("Returns tasks in array and check property title", function(assert) {
 test("Create a task", function(assert){
   supertest(tasksHandler.create)
     .post("/task/create")
-    .send("title=New task")
+    .send("title=My new task")
     .end(function(err, result) {
       if(err) {
         console.error(err);
       }
-      db.query("SELECT * FROM tasks WHERE title LIKE 'New%'",
+      db.query("SELECT * FROM tasks WHERE title LIKE 'My new task'",
         function(err, result) {
           assert.ok(result.rows.length == 1, "has 1 item");
           assert.end();
