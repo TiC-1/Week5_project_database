@@ -79,18 +79,21 @@ var createTodoNode = function (todo) {
   var todoNode = document.createElement("li");
   todoNode.setAttribute("class", "value");
   // filter username
-  // var idArray = todo.assign;
-  // var nameOutput = [];
-  // for (var i = 0; i < idArray.length; i ++) {
-  //     if (users.id == idArray[i]){
-  //       nameOutput.push(idArray[i]);
-  //
-  //   }
+  var idArray = todo.assign;
+  var nameOutput = [];
+  for (var i = 0; i < idArray.length; i++) {
+    for (var j = 0; j < users.length; j++) {
+      if (idArray[i] == users[j].id) {
+        nameOutput.push(users[j].username);
+      }
+    }
+
+  }
 
 
 
 
-  todoNode.textContent = todo.description + " assigned to: " + todo.assign;
+  todoNode.innerHTML = todo.description + " assigned to: " + nameOutput.join(", ");
   return todoNode;
 };
 
