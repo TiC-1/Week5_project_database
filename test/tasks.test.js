@@ -33,9 +33,25 @@ test("Create a task", function(assert){
       if(err) {
         console.error(err);
       }
+      db.query("SELECT * FROM tasks WHERE title='My new task'",
+        function(err, result) {
+          assert.ok(result.rows.length >= 1, "has 1 item");
+          assert.end();
+        });
+    });
+});
+
+test("Delete a task", function(assert){
+  supertest(tasksHandler.deleteTask)
+    .post("/task/delete")
+    .send("title=My new task")
+    .end(function(err, result) {
+      if(err) {
+        console.error(err);
+      }
       db.query("SELECT * FROM tasks WHERE title LIKE 'My new task'",
         function(err, result) {
-          assert.ok(result.rows.length == 1, "has 1 item");
+          assert.ok(result.rows.length == 0, "has no item");
           assert.end();
         });
     });

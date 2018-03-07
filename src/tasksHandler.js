@@ -30,4 +30,20 @@ function create(request, response) {
   });
 }
 
-module.exports = {index: index, create: create};
+function deleteTask(request, response) {
+  var formData = "";
+  request.on("data", function(chunk) {
+    formData += chunk;
+  });
+  request.on("end", function() {
+    var parsedFormData = querystring.parse(formData);
+    db.query("DELETE FROM tasks WHERE title=($1)",
+    [parsedFormData.title],
+    function(err, result) {
+      response.writeHead(302, {"Location": "/"});
+      response.end();;
+    });
+  });
+}
+
+module.exports = {index: index, create: create, deleteTask: deleteTask};
