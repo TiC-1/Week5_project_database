@@ -24,7 +24,7 @@ function updateUsers(err, data) {
         console.log(err);
     } else {
         // users = JSON.parse(data);
-        users = [{id: 1, username: "sdasdasa"}, {id: 2, username: "basdadas"}]; // riga di test
+        users = [{id: 1, username: "alberto"}, {id: 2, username: "claudio"}, {id: 3, username: "matteo"}, {id: 4, username: "iannis"}, {id: 5, username: "giulia"}]; // riga di test
         var form = document.getElementById("add-todo");
         users.forEach(function (user) {
           var input = document.createElement("input");
@@ -61,8 +61,8 @@ function upadateTask (err, data) {
     // tasks = JSON.parse(data);
     tasks = [
       { id: -3, description: 'first todo', assign: [1, 2, 3, 4]},
-      { id: -2, description: 'second todo', assign: ['Al','Claudio','Matte', 'Iannis']},
-      { id: -1, description: 'third todo', assign: ['Al','Claudio','Matte', 'Iannis']},
+      { id: -2, description: 'second todo', assign: [1,3,4]},
+      { id: -1, description: 'third todo', assign: [2,4,5]},
     ];
     var container = document.getElementById("todo-container");
     var todoListNode = document.createElement("ul");
@@ -75,9 +75,22 @@ function upadateTask (err, data) {
 }
 
 var createTodoNode = function (todo) {
+
   var todoNode = document.createElement("li");
   todoNode.setAttribute("class", "value");
-  todoNode.textContent = todo.description;
+  // filter username
+  // var idArray = todo.assign;
+  // var nameOutput = [];
+  // for (var i = 0; i < idArray.length; i ++) {
+  //     if (users.id == idArray[i]){
+  //       nameOutput.push(idArray[i]);
+  //
+  //   }
+
+
+
+
+  todoNode.textContent = todo.description + " assigned to: " + todo.assign;
   return todoNode;
 };
 
