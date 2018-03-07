@@ -77,7 +77,7 @@ function upadateTask (err, data) {
 var createTodoNode = function (todo) {
 
   var todoNode = document.createElement("li");
-  todoNode.setAttribute("class", "value");
+  todoNode.setAttribute("class", "todo-listitem");
   // filter username
   var idArray = todo.assign;
   var nameOutput = [];
