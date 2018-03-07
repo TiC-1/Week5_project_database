@@ -17,13 +17,14 @@ function request(cb, url) {
 }
 
 var users = [];
+var tasks = [];
 
 function updateUsers(err, data) {
     if (err) {
         console.log(err);
     } else {
-        users = JSON.parse(data);
-        // users = [{id: 1, name: "sdasdasa"}, {id: 2, name: "basdadas"}]; // riga di test
+        // users = JSON.parse(data);
+        users = [{id: 1, username: "sdasdasa"}, {id: 2, username: "basdadas"}]; // riga di test
         var form = document.getElementById("add-todo");
         users.forEach(function (user) {
           var input = document.createElement("input");
@@ -31,7 +32,7 @@ function updateUsers(err, data) {
           input.setAttribute("type", "checkbox");
           input.setAttribute("value", user.id);
           input.setAttribute("name", "users");
-          label.innerText = user.name;
+          label.innerText = user.username;
           label.appendChild(input);
           form.appendChild(label);
 
@@ -50,7 +51,37 @@ function updateUsers(err, data) {
         //     table.appendChild(row);
         // });
     }
-    request(upadateTask, "/tasks");
+    // request(upadateTask, "/tasks");
 }
-// updateUsers();  // riga di test
-request(updateUsers, '/users');
+
+function upadateTask (err, data) {
+  if (err) {
+    console.log(err);
+  } else {
+    // tasks = JSON.parse(data);
+    tasks = [
+      { id: -3, description: 'first todo', assign: [1, 2, 3, 4]},
+      { id: -2, description: 'second todo', assign: ['Al','Claudio','Matte', 'Iannis']},
+      { id: -1, description: 'third todo', assign: ['Al','Claudio','Matte', 'Iannis']},
+    ];
+    var container = document.getElementById("todo-container");
+    var todoListNode = document.createElement("ul");
+    tasks.forEach(function (todo) {
+      todoListNode.appendChild(createTodoNode(todo));
+    });
+    container.replaceChild(todoListNode, container.firstChild);
+
+  }
+}
+
+var createTodoNode = function (todo) {
+  var todoNode = document.createElement("li");
+  todoNode.setAttribute("class", "value");
+  todoNode.textContent = todo.description;
+  return todoNode;
+};
+
+// request(updateUsers, '/users');
+
+updateUsers();  // riga di test
+upadateTask();
