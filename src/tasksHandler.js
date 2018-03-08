@@ -3,12 +3,12 @@ var querystring = require("querystring");
 
 function index(request, response) {
   db.query("SELECT *, (SELECT json_agg(users.*) FROM tasks_assignments, users WHERE tasks.id=task_id AND user_id=users.id) AS assign FROM tasks;", function(err, result) {
-    if(err) {
+    if (err) {
       response.writeHead(500);
       return response.end();
     }
     response.writeHead(200, {
-        "Content-Type": "application/json"
+      "Content-Type": "application/json"
     });
     response.end(JSON.stringify(result.rows));
   });
@@ -21,15 +21,32 @@ function create(request, response) {
   });
   request.on("end", function() {
     var parsedFormData = querystring.parse(formData);
-    db.query("INSERT INTO tasks (title) VALUES ($1)", [parsedFormData.title],
+    db.query("INSERT INTO tasks (title) VALUES ($1) RETURNING ID", [parsedFormData.title],
       function(err, result) {
-        response.writeHead(302, {
-          "Location": "/"
+        var query = "";
+        for (var i = 0; i < parsedFormData.users.length; i++) {
+          query += "INSERT INTO tasks_assignments (task_id, user_id) VALUES (" + result.rows[0].id + ", " + parsedFormData.users[i] + ");";
+        }
+        db.query(escapeElement(query), function(err, result) {
+          response.writeHead(302, {
+            "Location": "/"
+          });
+          response.end();
         });
-        response.end();;
+
+
       });
+
   });
 }
+
+function escapeElement(elementRepresentation) {
+  var escaped = elementRepresentation
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+  return '"' + escaped + '"'
+}
+
 
 function deleteTask(request, response) {
   var formData = "";
@@ -38,7 +55,7 @@ function deleteTask(request, response) {
   });
   request.on("end", function() {
     var parsedFormData = querystring.parse(formData);
-    db.query("DELETE FROM tasks WHERE title=($1)", [parsedFormData.title],
+    db.query("DELETE FROM tasks_assignments WHERE task_id=($1); DELETE FROM tasks WHERE id=($1);", [parsedFormData.id],
       function(err, result) {
         response.writeHead(302, {
           "Location": "/"

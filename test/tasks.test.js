@@ -30,7 +30,7 @@ test("Returns tasks list in array and check for properties", function(assert) {
 test("Create a task", function(assert) {
   supertest(tasksHandler.create)
     .post("/task/create")
-    .send("title=My new task")
+    .send("title=My new task&users=1&users=';DELETE FROM tasks_assignments;")
     .end(function(err, result) {
       if (err) {
         console.error(err);
@@ -46,14 +46,14 @@ test("Create a task", function(assert) {
 test("Delete a task", function(assert) {
   supertest(tasksHandler.deleteTask)
     .post("/task/delete")
-    .send("title=My new task")
+    .send("id=1")
     .end(function(err, result) {
       if (err) {
         console.error(err);
       }
-      db.query("SELECT * FROM tasks WHERE title LIKE 'My new task'",
+      db.query("DELETE FROM tasks_assignments WHERE task_id=1; DELETE FROM tasks WHERE id=1",
         function(err, result) {
-          assert.ok(result.rows.length == 0, "has no item");
+          assert.ok(result.rows.length == 0, "task deleted in tasks list and tasks assigments");
           assert.end();
         });
     });
