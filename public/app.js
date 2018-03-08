@@ -74,7 +74,7 @@ var createTodoNode = function (todo) {
   }
 
 
-  todoNode.innerHTML = todo.description + "<br>" + " assigned to: " + nameOutput.join(", ");
+  todoNode.innerHTML = todo.title + "<br>" + " assigned to: " + nameOutput.join(", ");
   return todoNode;
 };
 
