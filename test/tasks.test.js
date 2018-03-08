@@ -6,11 +6,12 @@ var db = require("../src/database/db_connection.js");
 
 test("Populate the database", function(assert) {
   populateDb(function() {
+    assert.ok(true)
     assert.end();
   });
 });
 
-test("Returns tasks list in array and check for properties", function(assert) {
+test("Returns tasks list within an array and check some properties", function(assert) {
   supertest(tasksHandler.index)
     .get("/tasks")
     .end(function(err, result) {
@@ -19,10 +20,10 @@ test("Returns tasks list in array and check for properties", function(assert) {
         assert.fail();
       }
       var parsedResult = JSON.parse(result.text);
-      console.log(parsedResult);
+      console.log(result.text);
       assert.ok(parsedResult.length > 0, "list has items");
-      assert.ok(parsedResult[0].hasOwnProperty("assign"), "item has assign");
-      assert.ok(parsedResult[0].assign[0].hasOwnProperty("username"), "assign has username");
+      assert.ok(parsedResult[0].hasOwnProperty("assign"), "items has an assign property");
+      assert.ok(parsedResult[0].assign[0].hasOwnProperty("username"), "assign property has an username property");
       assert.end();
     });
 });
@@ -30,14 +31,16 @@ test("Returns tasks list in array and check for properties", function(assert) {
 test("Create a task", function(assert) {
   supertest(tasksHandler.create)
     .post("/task/create")
-    .send("title=My new task")
+    // Test escape function whith query injection while creating the new task
+    .send("title=My new task&users=1&users=';DELETE FROM tasks_assignments;")
     .end(function(err, result) {
       if (err) {
         console.error(err);
       }
       db.query("SELECT * FROM tasks WHERE title='My new task'",
         function(err, result) {
-          assert.ok(result.rows.length >= 1, "has 1 item");
+          console.log(result.rows);
+          assert.ok(result.rows.length >= 1, "A new task has been created");
           assert.end();
         });
     });
@@ -46,19 +49,19 @@ test("Create a task", function(assert) {
 test("Delete a task", function(assert) {
   supertest(tasksHandler.deleteTask)
     .post("/task/delete")
-    .send("title=My new task")
+    .send("id=1")
     .end(function(err, result) {
       if (err) {
         console.error(err);
       }
-      db.query("SELECT * FROM tasks WHERE title LIKE 'My new task'",
+      db.query("SELECT * FROM tasks_assignments WHERE task_id=1",
         function(err, result) {
-          assert.ok(result.rows.length == 0, "has no item");
+          console.log(result.rows);
+          assert.ok(result.rows.length == 0, "Task with id=1 has been deleted in tasks list and tasks assigments");
           assert.end();
         });
     });
 });
-
 
 // test("End pool connection", function(assert) {
 //   db.end(function() {
