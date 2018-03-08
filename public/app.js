@@ -91,13 +91,11 @@ var createTodoNode = function (todo) {
   }
 
 
-
-
-  todoNode.innerHTML = todo.description + " assigned to: " + nameOutput.join(", ");
+  todoNode.innerHTML = todo.description + "<br>" + " assigned to: " + nameOutput.join(", ");
   return todoNode;
 };
 
 // request(updateUsers, '/users');
 
 updateUsers();  // riga di test
-upadateTask();
+upadateTask();  // riga di test
