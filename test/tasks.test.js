@@ -10,7 +10,7 @@ test("Populate the database", function(assert) {
   });
 });
 
-test("Returns tasks in array and check property title", function(assert) {
+test("Returns tasks list in array and check for properties", function(assert) {
   supertest(tasksHandler.index)
     .get("/tasks")
     .end(function(err, result) {
@@ -19,18 +19,20 @@ test("Returns tasks in array and check property title", function(assert) {
         assert.fail();
       }
       var parsedResult = JSON.parse(result.text);
-      assert.ok(parsedResult.length > 0, "has items");
-      assert.ok(parsedResult[0].hasOwnProperty("title"), "item has title");
+      console.log(parsedResult);
+      assert.ok(parsedResult.length > 0, "list has items");
+      assert.ok(parsedResult[0].hasOwnProperty("assign"), "item has assign");
+      assert.ok(parsedResult[0].assign[0].hasOwnProperty("username"), "assign has username");
       assert.end();
     });
 });
 
-test("Create a task", function(assert){
+test("Create a task", function(assert) {
   supertest(tasksHandler.create)
     .post("/task/create")
     .send("title=My new task")
     .end(function(err, result) {
-      if(err) {
+      if (err) {
         console.error(err);
       }
       db.query("SELECT * FROM tasks WHERE title='My new task'",
@@ -41,12 +43,12 @@ test("Create a task", function(assert){
     });
 });
 
-test("Delete a task", function(assert){
+test("Delete a task", function(assert) {
   supertest(tasksHandler.deleteTask)
     .post("/task/delete")
     .send("title=My new task")
     .end(function(err, result) {
-      if(err) {
+      if (err) {
         console.error(err);
       }
       db.query("SELECT * FROM tasks WHERE title LIKE 'My new task'",
@@ -56,6 +58,7 @@ test("Delete a task", function(assert){
         });
     });
 });
+
 
 // test("End pool connection", function(assert) {
 //   db.end(function() {
