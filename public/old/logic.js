@@ -1,15 +1,15 @@
-// Main function to get infos from server
-function getUsers(cb, string) {
-  request(function(err, obj) {
-    cb(obj);
-  }, str);
-}
-
-function getTasks(cb, string) {
-  request(function(err, obj) {
-    cb(obj);
-  }, str);
-}
+// // Main function to get infos from server
+// function getUsers(cb, string) {
+//   request(function(err, obj) {
+//     cb(obj);
+//   }, str);
+// }
+//
+// function getTasks(cb, string) {
+//   request(function(err, obj) {
+//     cb(obj);
+//   }, str);
+// }
 
 
 // Generic funtion to send a request and parse the returned string into an object
@@ -149,8 +149,8 @@ var todoFunctions = {
 // The answer has something to do with needing to run code both in the browser and in Node.js
 // See this article for more details:
 // http://www.matteoagosti.com/blog/2013/02/24/writing-javascript-modules-for-both-browser-and-node/
-// if (typeof module !== 'undefined') {
-//   module.exports = todoFunctions;
-// }
-
-module.exports = getUsers;
+if (typeof module !== 'undefined') {
+  module.exports = todoFunctions;
+}
+//
+// module.exports = getUsers;

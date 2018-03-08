@@ -1,23 +1,23 @@
-// var form = document.getElementById("add-todo");
-var getUsers = require("./logic.js");
-
-function getUsersList() {
-  var str = "/users";
-  getUsers(updateUsers, str);
-}
-
-getUsersList(); // posso lanciarla così?!
-
-function updateUsers(nameArray) {
-  renderUsers(nameArray);
-}
-
-function renderUsers(nameArray) {
-  var nameInput_node = document.createElement("input");
-  nameArray.forEach(function (item) {
-    nameInput_node.appendChild(item);
-  });
-};
+// // var form = document.getElementById("add-todo");
+// var getUsers = require("./logic.js");
+//
+// function getUsersList() {
+//   var str = "/users";
+//   getUsers(updateUsers, str);
+// }
+//
+// getUsersList(); // posso lanciarla così?!
+//
+// function updateUsers(nameArray) {
+//   renderUsers(nameArray);
+// }
+//
+// function renderUsers(nameArray) {
+//   var nameInput_node = document.createElement("input");
+//   nameArray.forEach(function (item) {
+//     nameInput_node.appendChild(item);
+//   });
+// };
 
 
 // part 2 linking it all together
