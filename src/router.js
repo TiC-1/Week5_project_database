@@ -1,6 +1,6 @@
 var http = require("http");
 var assetsHandler = require("./assetsHandler.js");
-var assetsHandler = require("./tasksHandler.js");
+var tasksHandler = require("./tasksHandler.js");
 var usersHandler = require("./usersHandler.js");
 
 function router(request, response) {
