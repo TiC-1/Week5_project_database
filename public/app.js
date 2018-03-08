@@ -5,7 +5,7 @@ function request(cb, url) {
     if (xhr.readyState === 4) { // When request is completed
       if (xhr.status === 200) { // When request succeeded
         var responseObj = JSON.parse(xhr.responseText);
-        cb(null, responseObj); // Launch callback function (updateDOM)
+        cb(null, responseObj); // Launch callback function
       } else { // In case of error in request
         var errorMessage = xhr.responseText;
         cb("Error " + url + " " + errorMessage);
@@ -15,6 +15,8 @@ function request(cb, url) {
   xhr.open("GET", url, true);
   xhr.send();
 }
+
+// DOM Manipulation ******
 
 var users = [];
 var tasks = [];
@@ -26,15 +28,21 @@ function updateUsers(err, data) {
         users = data;
         // users = [{id: 1, username: "alberto"}, {id: 2, username: "claudio"}, {id: 3, username: "matteo"}, {id: 4, username: "iannis"}, {id: 5, username: "giulia"}]; // riga di test
         var form = document.getElementById("add-todo");
+        var inputContainer = document.createElement("div");
+
         users.forEach(function (user) {
           var input = document.createElement("input");
           var label = document.createElement("label")
           input.setAttribute("type", "checkbox");
           input.setAttribute("value", user.id);
           input.setAttribute("name", "users");
+          input.setAttribute("class", "check")
           label.innerText = user.username;
           label.appendChild(input);
-          form.appendChild(label);
+          // form.appendChild(label);
+          inputContainer.appendChild(label);
+          form.appendChild(inputContainer);
+
 
         });
 
@@ -62,7 +70,6 @@ function upadateTask (err, data) {
 }
 
 var createTodoNode = function (todo) {
-
   var todoNode = document.createElement("li");
   todoNode.setAttribute("class", "todo-listitem");
   // filter username
@@ -74,9 +81,9 @@ var createTodoNode = function (todo) {
   }
 
 
-  todoNode.innerHTML = todo.description + "<br>" + " assigned to: " + nameOutput.join(", ");
+  todoNode.innerHTML = todo.title + "<br>" + " assigned to: " + nameOutput.join(", ");
   return todoNode;
 };
 
 request(updateUsers, '/users');
-request(upadateTask, "/tasks");
+request(upadateTask, '/tasks');
