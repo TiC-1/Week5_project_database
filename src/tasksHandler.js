@@ -47,7 +47,6 @@ function escapeElement(elementRepresentation) {
   return '"' + escaped + '"'
 }
 
-
 function deleteTask(request, response) {
   var formData = "";
   request.on("data", function(chunk) {

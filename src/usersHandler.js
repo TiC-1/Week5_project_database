@@ -3,17 +3,18 @@ var querystring = require("querystring");
 
 function index(request, response) {
   db.query("SELECT * FROM users", function(err, result) {
-    if(err) {
+    if (err) {
       response.writeHead(500);
       return response.end(err.toString());
     }
     response.writeHead(200, {
-        "Content-Type": "application/json"
+      "Content-Type": "application/json"
     });
     response.end(JSON.stringify(result.rows));
   });
 }
 
+// CREATE A NEW USER IS NOT ENABLE AT THAT POINT
 // function create(request, response) {
 //   var formData = "";
 //   request.on("data", function(chunk) {
@@ -30,4 +31,7 @@ function index(request, response) {
 //   });
 // }
 
-module.exports = {index: index/*, create: create*/};
+module.exports = {
+  index: index
+  //create: create
+};
