@@ -16,6 +16,8 @@ function request(cb, url) {
   xhr.send();
 }
 
+// DOM Manipulation ******
+
 var users = [];
 var tasks = [];
 
