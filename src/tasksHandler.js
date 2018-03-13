@@ -25,26 +25,25 @@ function create(request, response) {
       function(err, result) {
         var query = "";
         for (var i = 0; i < parsedFormData.users.length; i++) {
-          query += "INSERT INTO tasks_assignments (task_id, user_id) VALUES (" + result.rows[0].id + ", " + parsedFormData.users[i] + ");";
+          query += "INSERT INTO tasks_assignments (task_id, user_id) VALUES (" + escapeElement(result.rows[0].id) + ", " + escapeElement(parsedFormData.users[i]) + ");";
         }
-        db.query(escapeElement(query), function(err, result) {
+        db.query(query, function(err, result) {
           response.writeHead(302, {
             "Location": "/"
           });
           response.end();
         });
-
-
       });
 
   });
 }
 
 function escapeElement(elementRepresentation) {
-  var escaped = elementRepresentation
+  return elementRepresentation
+    .toString()
     .replace(/\\/g, '\\\\')
     .replace(/"/g, '\\"')
-  return '"' + escaped + '"'
+    .replace(/'/g, '\\\'')
 }
 
 function deleteTask(request, response) {
