@@ -22,31 +22,26 @@ var users = [];
 var tasks = [];
 
 function updateUsers(err, data) {
-    if (err) {
-        console.log(err);
-    } else {
-        users = data;
-        // users = [{id: 1, username: "alberto"}, {id: 2, username: "claudio"}, {id: 3, username: "matteo"}, {id: 4, username: "iannis"}, {id: 5, username: "giulia"}]; // riga di test
-        var form = document.getElementById("add-todo");
-        var inputContainer = document.createElement("div");
+  if (err) {
+    console.log(err);
+  } else {
+    users = data;
+    var form = document.getElementById("add-todo");
+    var inputContainer = document.createElement("div");
 
-        users.forEach(function (user) {
-          var input = document.createElement("input");
-          var label = document.createElement("label")
-          input.setAttribute("type", "checkbox");
-          input.setAttribute("value", user.id);
-          input.setAttribute("name", "users");
-          input.setAttribute("class", "check")
-          label.innerText = user.username;
-          label.appendChild(input);
-          // form.appendChild(label);
-          inputContainer.appendChild(label);
-          form.appendChild(inputContainer);
-
-
-        });
-
-    }
+    users.forEach(function (user) {
+      var input = document.createElement("input");
+      var label = document.createElement("label")
+      input.setAttribute("type", "checkbox");
+      input.setAttribute("value", user.id);
+      input.setAttribute("name", "users");
+      input.setAttribute("class", "check")
+      label.innerText = user.username;
+      label.appendChild(input);
+      inputContainer.appendChild(label);
+      form.appendChild(inputContainer);
+    });
+  }
 }
 
 function upadateTask (err, data) {
@@ -54,18 +49,12 @@ function upadateTask (err, data) {
     console.log(err);
   } else {
     tasks = data;
-    // tasks = [
-    //   { id: -3, description: 'first todo', assign: [1, 2, 3, 4]},
-    //   { id: -2, description: 'second todo', assign: [1,3,4]},
-    //   { id: -1, description: 'third todo', assign: [2,4,5]},
-    // ];
     var container = document.getElementById("todo-container");
     var todoListNode = document.createElement("ul");
     tasks.forEach(function (todo) {
       todoListNode.appendChild(createTodoNode(todo));
     });
     container.replaceChild(todoListNode, container.firstChild);
-
   }
 }
 
@@ -74,14 +63,16 @@ var createTodoNode = function (todo) {
   todoNode.setAttribute("class", "todo-listitem");
   // filter username
   var nameOutput = [];
-  for (var i = 0; i < todo.assign.length; i++) {
-
-    nameOutput.push(todo.assign[i].username);
-
+  var assignee = todo.assign;
+  if(assignee) {
+    for (var i = 0; i < assignee.length; i++) {
+      nameOutput.push(assignee[i].username);
+    }
+    nameOutput = nameOutput.join(", ");
+  } else {
+    nameOutput = "no one";
   }
-
-
-  todoNode.innerHTML = todo.title + "<br>" + " assigned to: " + nameOutput.join(", ");
+  todoNode.innerHTML = todo.title + "<br>" + " assigned to: " + nameOutput;
   return todoNode;
 };
 

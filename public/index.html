@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,39 +8,22 @@
   </head>
 
   <body>
-
-  <header>
-    <h1>ToDo App 2.0</h1>
-  </header>
-
-
+    <header>
+      <h1>ToDo App 2.0</h1>
+    </header>
 
     <section class="outerContainer">
-
       <div class="input_form">
-        <!-- <h1 class="input_heading" tabindex="0">ToDo App 2.0</h1> -->
         <form class="myForm" id="add-todo" action="/task/create" method="post">
           <input class="myForm-input-text" aria-label="input textbox" placeholder="Type your ToDo" type="text" name="title" value="" required aria-required="true">
           <input class="myForm-input-button" type="submit" role="button" aria-label="Search song" value="Submit" tabindex="0">
         </form>
 
-
-        <div class="introduction">
-        </div>
-
         <div id="todo-container" class="todo-list">
-
-
-
+          <ul></ul>
         </div>
-
-
-
     </section>
 
-    <div id="footer"></div>
-    <!-- <script src="./logic.js"></script> -->
     <script src="./app.js"></script>
   </body>
-
 </html>
