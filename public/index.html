@@ -13,17 +13,33 @@
     </header>
 
     <section class="outerContainer">
-      <div class="input_form">
+      <div class="input_form" id="todo-container">
         <form class="myForm" id="add-todo" action="/task/create" method="post">
           <input class="myForm-input-text" aria-label="input textbox" placeholder="Type your ToDo" type="text" name="title" value="" required aria-required="true">
           <input class="myForm-input-button" type="submit" role="button" aria-label="Search song" value="Submit" tabindex="0">
+          <todo-users></todo-users>
         </form>
 
-        <div id="todo-container" class="todo-list">
-          <ul></ul>
+        <div class="todo-list">
+          <ul>
+            <li class="todo-listitem" v-for="todo in todos">
+              {{todo.title}}<br>
+              Assigned to: {{todo.assigned.join(", ")}}
+            </li>
+          </ul>
         </div>
+      </div>
     </section>
 
-    <script src="./app.js"></script>
+    <script type="text/x-template" id="todo-users-template">
+      <div>
+        <label v-for="user in users" :key="user.id">
+          <input type="checkbox" class="check" name="users" v-bind:value="user.id">{{user.username}}
+        </label>
+      </div>
+    </script>
+
+    <script src="/vue.js"></script>
+    <script src="/app.js"></script>
   </body>
 </html>
